@@ -1,8 +1,30 @@
 import React, { Component } from 'react';
+import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider, Input} from 'semantic-ui-react'
 import logo from './logo.svg';
 import './App.css';
 
+//components
+// import Cards from './components/Cards';
+
+
 class App extends Component {
+  constructor () {
+    super()
+    this.state = {
+      quiz_mode: false,
+      card_word: ''
+    }
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  onChange = (event) => this.setState({ card_word: event.target.value });
+
+  handleSubmit(event) {
+   event.preventDefault();
+   console.log(this.state.card_word);
+ }
+
+
   render() {
     return (
       <div className="App">
@@ -20,6 +42,18 @@ class App extends Component {
             Learn React
           </a>
         </header>
+        <form class="ui form" onSubmit= { this.handleSubmit }>
+          <div class="field">
+            <input
+            type="text"
+            placeholder="Enter Word Here..."
+            name= 'card_word'
+            value={ this.state.value }
+            onChange={this.onChange}
+            />
+          </div>
+          <button type="submit" value="submit" class="ui button">Submit</button>
+        </form>
       </div>
     );
   }
