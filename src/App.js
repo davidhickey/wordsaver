@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider, Form, Input} from 'semantic-ui-react'
-// import axios from 'axios';
+import Cookies from 'universal-cookie';
 import logo from './logo.svg';
 import './App.css';
 
@@ -20,6 +20,8 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateInput = this.updateInput.bind(this);
   }
+
+
   handleSubmit(event) {
    event.preventDefault();
    this.setState({ card_value: this.state.card_input });
@@ -34,6 +36,12 @@ class App extends Component {
            this.setState({
             card_definition: data[0].shortdef[0]
              })
+             const cookies = new Cookies();
+             cookies.set(word, this.state.card_definition, { path: '/' });
+             console.log(cookies); // Pacman
+
+
+
          })
      })
   }
