@@ -22,7 +22,8 @@ class App extends Component {
       card_definition_first: '',
       card_definition_second: '',
       card_definition_third: '',
-      cookie_data: ''
+      cookie_data: '',
+      error: null
 
     }
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -61,15 +62,24 @@ class App extends Component {
       fetch(url,{
           method: "GET"
         }).then(response => {
+          if(response.ok){
+            return response.json();
+          }
+          else{
+            throw new Error('are you sure this is a word?');
+          }
+        })
           // console.log("response", response);
-          response.json().then(data =>{
+          // response.json()
+          .then(data =>{
             // console.log(data[0].fl);
             this.setState({
               card_speech: data[0].fl,
              card_definition_first: data[0].shortdef[0],
              card_definition_second: data[0].shortdef[1],
              card_definition_third: data[0].shortdef[2],
-             show_def: true
+             show_def: true,
+             error: false
               })
               var speech = this.state.card_speech
               var def1 = this.state.card_definition_first
@@ -78,7 +88,11 @@ class App extends Component {
 
               this.createCookie(word, speech, def1, def2, def3)
           })
+      // })
+      .catch(error => this.setState({
+        error: true
       })
+    )
   }
 
   createCookie(word, speech, def1, def2, def3){
@@ -103,6 +117,11 @@ class App extends Component {
 
   render() {
     const show_def = this.state.show_def
+    const error = this.state.error
+    // if(error){
+    //   return <p>error.message</p>
+    // }
+
     return (
       <Container>
       <div className="App">
@@ -134,6 +153,12 @@ class App extends Component {
         ) : (
           <p>Show Me the Definition</p>
           )
+        }
+        {error ? (
+           <p>{'Are you sure this is a word?'}</p>
+         ) : (
+           null
+         )
         }
         </div>
         </Segment>
