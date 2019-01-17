@@ -21,6 +21,14 @@
 .App-link {
   color: #61dafb;
 }
+.close{
+  position: absolute;
+  top: 0px;
+  right: -4px;
+}
+.block{
+  display: block;
+}
 
 .left-align{
   text-align: left;

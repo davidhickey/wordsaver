@@ -24,6 +24,8 @@ class App extends Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateInput = this.updateInput.bind(this);
+    this.updateData = this.updateData.bind(this);
+
   }
 
 
@@ -41,6 +43,14 @@ class App extends Component {
    this.setState({ card_value: this.state.card_input });
    var word = this.state.card_input;
    this.grabWebsterData(word);
+ }
+
+ updateData(key){
+   const cookies = new Cookies();
+   cookies.remove(key)
+   console.log(key);
+
+   this.setState({cookie_data: cookies.getAll()})
  }
 
   grabWebsterData(word){
@@ -64,18 +74,19 @@ class App extends Component {
   createCookie(word, def){
     //set datepicker
     let d = new Date(),
+    hour = '' + (d.getHours()),
+    min  = '' + (d.getMinutes()),
     month = '' + (d.getMonth() + 1),
     day = '' + d.getDate(),
     year = d.getFullYear();
     if (month.length < 2) month = '0' + month;
     if (day.length < 2) day = '0' + day;
+    var realTime = [hour,min].join(':')
     var realDate = [month, day, year].join('-')
     //creates new cookie and sets to state
     const cookies = new Cookies();
-    cookies.set(word, [this.state.card_definition, realDate], { path: '/' });
-    // var cookieObj = {...cookies.getAll(), ...cookies.set(word, [this.state.card_definition, realDate], { path: '/' })}
+    cookies.set(word, [this.state.card_definition, realDate, realTime], { path: '/' });
     this.setState({cookie_data: cookies.getAll()})
-    // this.setState({cookie_data: cookieObj})
 
   }
 
@@ -105,12 +116,9 @@ class App extends Component {
           )
         }
         </div>
-
-
-
         </Segment>
           <Segment.Group>
-            <WordList data = {this.state.cookie_data}/>
+            <WordList data = {this.state.cookie_data} updateData = {this.updateData}/>
           </Segment.Group>
 
 
