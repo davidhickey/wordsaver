@@ -18,7 +18,10 @@ class App extends Component {
       show_def: false,
       card_input: '',
       card_value: '',
-      card_definition: '',
+      card_speech: '',
+      card_definition_first: '',
+      card_definition_second: '',
+      card_definition_third: '',
       cookie_data: ''
 
     }
@@ -60,18 +63,25 @@ class App extends Component {
         }).then(response => {
           // console.log("response", response);
           response.json().then(data =>{
-            // console.log(data[0].shortdef);
+            // console.log(data[0].fl);
             this.setState({
-             card_definition: data[0].shortdef[0],
+              card_speech: data[0].fl,
+             card_definition_first: data[0].shortdef[0],
+             card_definition_second: data[0].shortdef[1],
+             card_definition_third: data[0].shortdef[2],
              show_def: true
               })
-              var def = this.state.card_definition
-              this.createCookie(word, def)
+              var speech = this.state.card_speech
+              var def1 = this.state.card_definition_first
+              var def2 = this.state.card_definition_second
+              var def3 = this.state.card_definition_third
+
+              this.createCookie(word, speech, def1, def2, def3)
           })
       })
   }
 
-  createCookie(word, def){
+  createCookie(word, speech, def1, def2, def3){
     //set datepicker
     let d = new Date(),
     hour = '' + (d.getHours()),
@@ -83,9 +93,10 @@ class App extends Component {
     if (day.length < 2) day = '0' + day;
     var realTime = [hour,min].join(':')
     var realDate = [month, day, year].join('-')
+    // var def1 = this.state.card_definition_first
     //creates new cookie and sets to state
     const cookies = new Cookies();
-    cookies.set(word, [this.state.card_definition, realDate, realTime], { path: '/' });
+    cookies.set(word, [speech, def1, def2, def3, realDate, realTime], { path: '/' });
     this.setState({cookie_data: cookies.getAll()})
 
   }
@@ -110,7 +121,16 @@ class App extends Component {
         </form>
         <div className="results">
         {show_def ? (
-          <p><b>{this.state.card_value} - </b><i>{this.state.card_definition}</i></p>
+          <div className="left-align">
+          <p>
+          <b className="block">{this.state.card_value} - <i>{this.state.card_speech}</i></b>
+          </p>
+          <ul>
+            <li>{this.state.card_definition_first}</li>
+            <li>{this.state.card_definition_second}</li>
+            <li>{this.state.card_definition_third}</li>
+          </ul>
+          </div>
         ) : (
           <p>Show Me the Definition</p>
           )
