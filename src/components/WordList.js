@@ -12,7 +12,6 @@ componentWillReceiveProps(props) {
 
   console.log(Object.keys(data));
 
-
 }
 
 

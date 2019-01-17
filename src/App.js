@@ -15,6 +15,7 @@ class App extends Component {
 
     this.state = {
       quiz_mode: false,
+      show_def: false,
       card_input: '',
       card_value: '',
       card_definition: '',
@@ -51,7 +52,8 @@ class App extends Component {
           response.json().then(data =>{
             // console.log(data[0].shortdef);
             this.setState({
-             card_definition: data[0].shortdef[0]
+             card_definition: data[0].shortdef[0],
+             show_def: true
               })
               var def = this.state.card_definition
               this.createCookie(word, def)
@@ -71,10 +73,14 @@ class App extends Component {
     //creates new cookie and sets to state
     const cookies = new Cookies();
     cookies.set(word, [this.state.card_definition, realDate], { path: '/' });
+    // var cookieObj = {...cookies.getAll(), ...cookies.set(word, [this.state.card_definition, realDate], { path: '/' })}
     this.setState({cookie_data: cookies.getAll()})
+    // this.setState({cookie_data: cookieObj})
+
   }
 
   render() {
+    const show_def = this.state.show_def
     return (
       <Container>
       <div className="App">
@@ -92,13 +98,20 @@ class App extends Component {
           <button type="submit" value="submit" className="ui button">Submit</button>
         </form>
         <div className="results">
-          <p>{this.state.card_value}</p>
-          <p>{this.state.card_definition}</p>
+        {show_def ? (
+          <p><b>{this.state.card_value} - </b><i>{this.state.card_definition}</i></p>
+        ) : (
+          <p>Show Me the Definition</p>
+          )
+        }
         </div>
+
+
+
         </Segment>
-        <Segment.Group>
-          <WordList data = {this.state.cookie_data}/>
-        </Segment.Group>
+          <Segment.Group>
+            <WordList data = {this.state.cookie_data}/>
+          </Segment.Group>
 
 
       </div>
