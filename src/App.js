@@ -96,9 +96,9 @@ class App extends Component {
           <p>{this.state.card_definition}</p>
         </div>
         </Segment>
-        <Segment>
+        <Segment.Group>
           <WordList data = {this.state.cookie_data}/>
-        </Segment>
+        </Segment.Group>
 
 
       </div>

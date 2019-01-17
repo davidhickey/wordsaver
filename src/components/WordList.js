@@ -4,11 +4,10 @@ import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider, Form
 
 class WordList extends Component {
   constructor(props) {
- super(props);
-// this.state = { term: '' };
-}
+    super(props);
+  }
 
-componentDidUpdate () {
+componentWillReceiveProps(props) {
   const data = this.props.data
 
   console.log(Object.keys(data));
@@ -20,13 +19,11 @@ componentDidUpdate () {
   render() {
     const data = this.props.data
     return (
-      <Segment>
-      <ul>
+      <Segment className="left-align">
       {Object.keys(data).map((key) => {
-        return <li key={key}><b>{key} - </b><i>{data[key]}</i></li>
+        return <Segment key={key}><b>{key} - </b><i>{data[key]}</i></Segment>
       })}
 
-      </ul>
       </Segment>
 
     )
