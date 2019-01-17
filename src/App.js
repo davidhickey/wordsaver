@@ -6,7 +6,7 @@ import logo from './logo.svg';
 import './App.css';
 
 //components
-// import Cards from './components/Cards';
+import WordList from './components/WordList';
 
 
 class App extends Component {
@@ -76,8 +76,9 @@ class App extends Component {
 
   render() {
     return (
+      <Container>
       <div className="App">
-
+      <Segment>
         <form className="ui form" onSubmit= { this.handleSubmit }>
           <div className="field">
             <input
@@ -90,12 +91,18 @@ class App extends Component {
           </div>
           <button type="submit" value="submit" className="ui button">Submit</button>
         </form>
-        <div className="segment results">
+        <div className="results">
           <p>{this.state.card_value}</p>
           <p>{this.state.card_definition}</p>
-
         </div>
+        </Segment>
+        <Segment>
+          <WordList data = {this.state.cookie_data}/>
+        </Segment>
+
+
       </div>
+      </Container>
     );
   }
 }
