@@ -125,6 +125,12 @@ class App extends Component {
     return (
       <Container>
       <div className="App">
+        <Header>
+          <div className="margin-top">
+            <img src={logo} className="App-logo" alt="logo" />
+          </div>
+        <h1 className="no-margin-top">WordSaver</h1>
+        </Header>
       <Segment>
         <form className="ui form" onSubmit= { this.handleSubmit }>
           <div className="field">
@@ -139,36 +145,34 @@ class App extends Component {
           <button type="submit" value="submit" className="ui button">Submit</button>
         </form>
         <div className="results">
-        {show_def ? (
-          <div className="left-align">
-          <p>
-          <b className="block">{this.state.card_value} - <i>{this.state.card_speech}</i></b>
-          </p>
-          <ul>
-            <li>{this.state.card_definition_first}</li>
-            <li>{this.state.card_definition_second}</li>
-            <li>{this.state.card_definition_third}</li>
-          </ul>
-          </div>
-        ) : (
-          <p>Show Me the Definition</p>
-          )
-        }
-        {error ? (
-           <p>{'Are you sure this is a word?'}</p>
-         ) : (
-           null
-         )
-        }
+          {show_def ? (
+            <div className="left-align">
+            <p>
+            <b className="block">{this.state.card_value} - <i>{this.state.card_speech}</i></b>
+            </p>
+            <ul>
+              <li>{this.state.card_definition_first}</li>
+              <li>{this.state.card_definition_second}</li>
+              <li>{this.state.card_definition_third}</li>
+            </ul>
+            </div>
+          ) : (
+            <p>Show Me the Definition</p>
+            )
+          }
+          {error ? (
+             <p>{'Are you sure this is a word?'}</p>
+           ) : (
+             null
+           )
+          }
         </div>
-        </Segment>
-          <Segment.Group>
-            <WordList data = {this.state.cookie_data} updateData = {this.updateData}/>
-          </Segment.Group>
-
-
+      </Segment>
+      <Segment.Group>
+        <WordList data = {this.state.cookie_data} updateData = {this.updateData}/>
+      </Segment.Group>
       </div>
-      </Container>
+    </Container>
     );
   }
 }
