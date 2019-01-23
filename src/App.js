@@ -134,10 +134,12 @@ class App extends Component {
     const show_def = this.state.show_def
     const error = this.state.error
     const page = this.state.page
-    // if(error){
-    //   return <p>error.message</p>
-    // }
 
+    function isActive(activePage){
+    if(page != activePage){
+      return 'hide-page'
+    }
+  }
     return (
       <Container>
       <div className="App">
@@ -148,7 +150,7 @@ class App extends Component {
         <h1 className="no-margin-top">WordSaver</h1>
         <Navigation page = {this.state.page} changePage = {this.changePage}/>
         </Header>
-      <Segment>
+      <Segment className={isActive('Home')}>
         <form className="ui form" onSubmit= { this.handleSubmit }>
           <div className="field">
             <input
@@ -168,10 +170,12 @@ class App extends Component {
          )
         }
       </Segment>
-      <Segment.Group>
+      <Segment.Group className={isActive('Home')}>
         <WordList data = {this.state.cookie_data} updateData = {this.updateData}/>
       </Segment.Group>
-      <Quiz />
+      <div className={isActive('Quiz')}>
+        <Quiz page={this.state.page}/>
+      </div>
       </div>
     </Container>
     );

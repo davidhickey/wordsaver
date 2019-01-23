@@ -30,6 +30,9 @@
 .block{
   display: block;
 }
+.hide-page{
+  display: none;
+}
 
 .left-align{
   text-align: left;

@@ -19,12 +19,7 @@ componentWillReceiveProps(props) {
     if(page === activePage){
       return 'active'
     }
-    else if(page === activePage){
-      return 'active'
-    }
   }
-
-
     return (
       <div className="ui secondary pointing menu">
         <a  className={'item ' + isActive('Home')}
