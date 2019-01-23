@@ -40,6 +40,9 @@
 .margin-top{
   margin-top: 10px;
 }
+.red{
+  color: red;
+}
 
 @keyframes App-logo-spin {
   from {

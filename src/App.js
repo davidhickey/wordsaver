@@ -144,29 +144,14 @@ class App extends Component {
           </div>
           <button type="submit" value="submit" className="ui button">Submit</button>
         </form>
-        <div className="results">
-          {show_def ? (
-            <div className="left-align">
-            <p>
-            <b className="block">{this.state.card_value} - <i>{this.state.card_speech}</i></b>
-            </p>
-            <ul>
-              <li>{this.state.card_definition_first}</li>
-              <li>{this.state.card_definition_second}</li>
-              <li>{this.state.card_definition_third}</li>
-            </ul>
-            </div>
-          ) : (
-            <p>Show Me the Definition</p>
-            )
-          }
-          {error ? (
-             <p>{'Are you sure this is a word?'}</p>
-           ) : (
-             null
-           )
-          }
-        </div>
+        {error ? (
+   <p className="margin-top red">{'Are you sure this is a word?'}</p>
+ ) : (
+   null
+ )
+}
+
+
       </Segment>
       <Segment.Group>
         <WordList data = {this.state.cookie_data} updateData = {this.updateData}/>
