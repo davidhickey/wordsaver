@@ -6,7 +6,10 @@ import logo from './logo.svg';
 import './App.css';
 
 //components
+import Navigation from './components/Navigation';
 import WordList from './components/WordList';
+import Quiz from './components/Quiz';
+
 
 
 class App extends Component {
@@ -14,7 +17,7 @@ class App extends Component {
     super(props)
 
     this.state = {
-      quiz_mode: false,
+      page: 'Home',
       show_def: false,
       card_input: '',
       card_value: '',
@@ -29,6 +32,7 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateInput = this.updateInput.bind(this);
     this.updateData = this.updateData.bind(this);
+    this.changePage = this.changePage.bind(this);
 
   }
 
@@ -38,6 +42,10 @@ class App extends Component {
     const cookies = new Cookies();
     this.setState({cookie_data: cookies.getAll()})
   }
+  changePage(destination){
+    this.setState({page: destination})
+  }
+
   updateInput(event) {
      this.setState({card_input: event.target.value});
   }
@@ -52,8 +60,6 @@ class App extends Component {
  updateData(key){
    const cookies = new Cookies();
    cookies.remove(key)
-   console.log(key);
-
    this.setState({cookie_data: cookies.getAll()})
  }
 
@@ -127,6 +133,7 @@ class App extends Component {
   render() {
     const show_def = this.state.show_def
     const error = this.state.error
+    const page = this.state.page
     // if(error){
     //   return <p>error.message</p>
     // }
@@ -139,6 +146,7 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
           </div>
         <h1 className="no-margin-top">WordSaver</h1>
+        <Navigation page = {this.state.page} changePage = {this.changePage}/>
         </Header>
       <Segment>
         <form className="ui form" onSubmit= { this.handleSubmit }>
@@ -163,6 +171,7 @@ class App extends Component {
       <Segment.Group>
         <WordList data = {this.state.cookie_data} updateData = {this.updateData}/>
       </Segment.Group>
+      <Quiz />
       </div>
     </Container>
     );
