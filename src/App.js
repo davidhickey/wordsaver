@@ -103,11 +103,20 @@ class App extends Component {
     month = '' + (d.getMonth() + 1),
     day = '' + d.getDate(),
     year = d.getFullYear();
+    var timeValue;
+    if (hour > 0 && hour <= 12) {
+      timeValue= "" + hour;
+    } else if (hour > 12) {
+      timeValue= "" + (hour - 12);
+    } else if (hour == 0) {
+      timeValue= "12";
+    }
+    timeValue += (min < 10) ? ":0" + min : ":" + min;  // get minutes
+    timeValue += (hour >= 12) ? " P.M." : " A.M.";  // get AM/PM
+    var realTime = timeValue;
     if (month.length < 2) month = '0' + month;
     if (day.length < 2) day = '0' + day;
-    var realTime = [hour,min].join(':')
     var realDate = [month, day, year].join('-')
-    // var def1 = this.state.card_definition_first
     //creates new cookie and sets to state
     const cookies = new Cookies();
     cookies.set(word, [speech, def1, def2, def3, realDate, realTime], { path: '/' });
@@ -145,13 +154,11 @@ class App extends Component {
           <button type="submit" value="submit" className="ui button">Submit</button>
         </form>
         {error ? (
-   <p className="margin-top red">{'Are you sure this is a word?'}</p>
- ) : (
-   null
- )
-}
-
-
+           <p className="margin-top red">{'Are you sure this is a word?'}</p>
+         ) : (
+           null
+         )
+        }
       </Segment>
       <Segment.Group>
         <WordList data = {this.state.cookie_data} updateData = {this.updateData}/>
