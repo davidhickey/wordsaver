@@ -13,11 +13,11 @@ class Navigation extends Component {
   }
     return (
       <div className="ui secondary pointing menu">
-        <span className={'item ' + isActive('Home')}
+        <span className={'pointer item ' + isActive('Home')}
         onClick={() => this.props.changePage('Home')}>
           Home
         </span>
-        <span className={'item ' + isActive('Quiz')}
+        <span className={'pointer item ' + isActive('Quiz')}
         onClick={() => this.props.changePage('Quiz')}>
           Quiz
         </span>

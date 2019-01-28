@@ -158,13 +158,7 @@ class App extends Component {
       <h1 className="no-margin-top">WordSaver</h1>
       <Navigation page = {this.state.page} changePage = {this.changePage}/>
       </Header>
-      <CSSTransitionGroup
-     transitionName="comp"
-     transitionAppear={true}
-     transitionAppearTimeout={500}
-     transitionEnter={false}
-     transitionLeave={false}>
-      <Segment className={isActive('Home'), 'margin-bottom'}>
+      <Segment className={"margin-bottom", isActive('Home')}>
         <Form className="ui form" onSubmit= { this.handleSubmit }>
           <div className="field">
             <Input
@@ -184,7 +178,6 @@ class App extends Component {
          )
         }
       </Segment>
-      </CSSTransitionGroup>
       <CSSTransitionGroup
      transitionName="comp"
      transitionAppear={true}

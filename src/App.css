@@ -45,11 +45,16 @@
 }
 .margin-bottom{
   margin-bottom: 1em !important;
-
 }
 .red{
   color: red;
 }
+.pointer{
+  cursor: pointer;
+}
+
+
+/* CSS Transitions */
 
 .app-appear {
   opacity: 0.01;
