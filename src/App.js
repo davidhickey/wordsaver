@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider, Form, Input} from 'semantic-ui-react'
 import Cookies from 'universal-cookie';
-// import DatePicker from "react-datepicker";
+import { CSSTransitionGroup } from 'react-transition-group'
 import logo from './logo.svg';
 import './App.css';
 
@@ -144,6 +144,12 @@ class App extends Component {
   }
     return (
       <Container>
+      <CSSTransitionGroup
+     transitionName="app"
+     transitionAppear={true}
+     transitionAppearTimeout={500}
+     transitionEnter={false}
+     transitionLeave={false}>
       <div className="App">
       <Header>
         <div className="margin-top">
@@ -152,7 +158,13 @@ class App extends Component {
       <h1 className="no-margin-top">WordSaver</h1>
       <Navigation page = {this.state.page} changePage = {this.changePage}/>
       </Header>
-      <Segment className={isActive('Home')}>
+      <CSSTransitionGroup
+     transitionName="comp"
+     transitionAppear={true}
+     transitionAppearTimeout={500}
+     transitionEnter={false}
+     transitionLeave={false}>
+      <Segment className={isActive('Home'), 'margin-bottom'}>
         <Form className="ui form" onSubmit= { this.handleSubmit }>
           <div className="field">
             <Input
@@ -172,13 +184,29 @@ class App extends Component {
          )
         }
       </Segment>
+      </CSSTransitionGroup>
+      <CSSTransitionGroup
+     transitionName="comp"
+     transitionAppear={true}
+     transitionAppearTimeout={500}
+     transitionEnter={false}
+     transitionLeave={false}>
       <Segment.Group className={isActive('Home')}>
         <WordList data = {this.state.cookie_data} updateData = {this.updateData}/>
       </Segment.Group>
+      </CSSTransitionGroup>
+      <CSSTransitionGroup
+     transitionName="comp"
+     transitionAppear={true}
+     transitionAppearTimeout={500}
+     transitionEnter={false}
+     transitionLeave={false}>
       <div className={isActive('Quiz')}>
         <Quiz page={this.state.page} data = {this.state.cookie_data} flip = {this.state.quiz_mode} />
       </div>
+      </CSSTransitionGroup>
       </div>
+      </CSSTransitionGroup>
     </Container>
     );
   }

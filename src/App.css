@@ -43,9 +43,33 @@
 .margin-top{
   margin-top: 10px;
 }
+.margin-bottom{
+  margin-bottom: 1em !important;
+
+}
 .red{
   color: red;
 }
+
+.app-appear {
+  opacity: 0.01;
+}
+
+.app-appear.app-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.comp-appear {
+  opacity: 0.01;
+}
+
+.comp-appear.comp-appear-active {
+  opacity: 1;
+  transition: opacity 1s ease-in;
+}
+
+
 
 
 @keyframes App-logo-spin {

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 // import Cookies from 'universal-cookie';
 import { Segment} from 'semantic-ui-react';
+import { CSSTransitionGroup } from 'react-transition-group' // ES6
+
 
 
 class WordList extends Component {
@@ -15,6 +17,7 @@ class WordList extends Component {
   render() {
     const data = this.props.data
     return (
+
       <Segment className="left-align">
       {Object.keys(data).reverse().map((key) => {
         return <Segment key={key}>
@@ -32,6 +35,7 @@ class WordList extends Component {
       })}
 
       </Segment>
+
 
     )
   }
