@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider, Form, Input} from 'semantic-ui-react'
 import Cookies from 'universal-cookie';
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 import logo from './logo.svg';
 import './App.css';
 
@@ -26,8 +26,10 @@ class App extends Component {
       card_definition_second: '',
       card_definition_third: '',
       cookie_data: '',
-      error: null
-
+      error: null,
+      quiz_mode:{
+        show_answer: false
+      }
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateInput = this.updateInput.bind(this);
@@ -114,7 +116,7 @@ class App extends Component {
       timeValue= "" + hour;
     } else if (hour > 12) {
       timeValue= "" + (hour - 12);
-    } else if (hour == 0) {
+    } else if (hour === 0) {
       timeValue= "12";
     }
     timeValue += (min < 10) ? ":0" + min : ":" + min;  // get minutes
@@ -131,29 +133,29 @@ class App extends Component {
   }
 
   render() {
-    const show_def = this.state.show_def
+    // const show_def = this.state.show_def
     const error = this.state.error
     const page = this.state.page
 
     function isActive(activePage){
-    if(page != activePage){
+    if(page !== activePage){
       return 'hide-page'
     }
   }
     return (
       <Container>
       <div className="App">
-        <Header>
-          <div className="margin-top">
-            <img src={logo} className="App-logo" alt="logo" />
-          </div>
-        <h1 className="no-margin-top">WordSaver</h1>
-        <Navigation page = {this.state.page} changePage = {this.changePage}/>
-        </Header>
+      <Header>
+        <div className="margin-top">
+          <img src={logo} className="App-logo" alt="logo" />
+        </div>
+      <h1 className="no-margin-top">WordSaver</h1>
+      <Navigation page = {this.state.page} changePage = {this.changePage}/>
+      </Header>
       <Segment className={isActive('Home')}>
-        <form className="ui form" onSubmit= { this.handleSubmit }>
+        <Form className="ui form" onSubmit= { this.handleSubmit }>
           <div className="field">
-            <input
+            <Input
             type="text"
             placeholder="Enter Word Here..."
             name= 'card_word'
@@ -161,8 +163,8 @@ class App extends Component {
             onChange={this.updateInput}
             />
           </div>
-          <button type="submit" value="submit" className="ui button">Submit</button>
-        </form>
+          <Button type="submit" value="submit" className="ui button">Submit</Button>
+        </Form>
         {error ? (
            <p className="margin-top red">{'Are you sure this is a word?'}</p>
          ) : (
@@ -174,7 +176,7 @@ class App extends Component {
         <WordList data = {this.state.cookie_data} updateData = {this.updateData}/>
       </Segment.Group>
       <div className={isActive('Quiz')}>
-        <Quiz page={this.state.page}/>
+        <Quiz page={this.state.page} data = {this.state.cookie_data} flip = {this.state.quiz_mode} />
       </div>
       </div>
     </Container>

@@ -1,27 +1,16 @@
 import React, { Component } from 'react';
-import Cookies from 'universal-cookie';
-import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider, Form, Input} from 'semantic-ui-react';
+// import Cookies from 'universal-cookie';
+import { Segment} from 'semantic-ui-react';
 
 
 class WordList extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
-componentWillReceiveProps(props) {
-  const data = this.props.data
-
-
-  console.log(
-    Object.keys(data).map((key) => {
-
-    return data[key][1]
-
-    })
-  );
-  console.log(Object.keys(data));
-
-}
+// componentWillReceiveProps(props) {
+//   const data = this.props.data
+// }
 
   render() {
     const data = this.props.data
