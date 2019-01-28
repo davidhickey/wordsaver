@@ -74,6 +74,23 @@
   transition: opacity 1s ease-in;
 }
 
+.comp-enter {
+  opacity: 0.01;
+}
+
+.comp-enter.comp-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.comp-leave {
+  opacity: 1;
+}
+
+.comp-leave.comp-leave-active {
+  opacity: 0.01;
+  transition: opacity 500ms ease-in;
+}
+
 
 
 

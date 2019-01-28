@@ -19,6 +19,12 @@ class WordList extends Component {
     return (
 
       <Segment className="left-align">
+      <CSSTransitionGroup
+          transitionName="comp"
+          transitionEnter={true}
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}
+          transitionLeave={true}>
       {Object.keys(data).reverse().map((key) => {
         return <Segment key={key}>
         <span className="block">{data[key][4]}</span>
@@ -33,7 +39,7 @@ class WordList extends Component {
         <i onClick={() => this.props.updateData(key)} className="close icon"></i>
         </Segment>
       })}
-
+      </CSSTransitionGroup>
       </Segment>
 
 

@@ -147,7 +147,7 @@ class App extends Component {
       <CSSTransitionGroup
      transitionName="app"
      transitionAppear={true}
-     transitionAppearTimeout={500}
+     transitionAppearTimeout={100}
      transitionEnter={false}
      transitionLeave={false}>
       <div className="App">
