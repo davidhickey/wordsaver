@@ -57,28 +57,16 @@
 
 /* CSS Transitions */
 
-.app-appear {
-  opacity: 0.01;
-}
-
-.app-appear.app-appear-active {
-  opacity: 1;
-  transition: opacity .5s ease-in;
-}
-
 .comp-appear {
   opacity: 0.01;
 }
-
 .comp-appear.comp-appear-active {
   opacity: 1;
   transition: opacity 1s ease-in;
 }
-
 .comp-enter {
   opacity: 0.01;
 }
-
 .comp-enter.comp-enter-active {
   opacity: 1;
   transition: opacity 500ms ease-in;
@@ -86,8 +74,23 @@
 .comp-leave {
   opacity: 1;
 }
-
 .comp-leave.comp-leave-active {
+  opacity: 0.01;
+  transition: opacity 500ms ease-in;
+}
+
+.word-enter {
+  opacity: 0.01;
+}
+.word-enter.word-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.word-leave {
+  opacity: 1;
+}
+.word-leave.word-leave-active {
   opacity: 0.01;
   transition: opacity 500ms ease-in;
 }

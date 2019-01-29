@@ -20,9 +20,9 @@ class WordList extends Component {
 
       <Segment className="left-align">
       <CSSTransitionGroup
-          transitionName="comp"
+          transitionName="word"
           transitionEnter={true}
-          transitionEnterTimeout={500}
+          transitionEnterTimeout={1000}
           transitionLeaveTimeout={500}
           transitionLeave={true}>
       {Object.keys(data).reverse().map((key) => {
