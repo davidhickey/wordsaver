@@ -141,15 +141,12 @@ class App extends Component {
     if(page !== activePage){
       return 'hide-page'
     }
+    else{
+      return 'active'
+    }
   }
     return (
       <Container>
-      <CSSTransitionGroup
-     transitionName="app"
-     transitionAppear={true}
-     transitionAppearTimeout={100}
-     transitionEnter={false}
-     transitionLeave={false}>
       <div className="App">
       <Header>
         <div className="margin-top">
@@ -158,6 +155,14 @@ class App extends Component {
       <h1 className="no-margin-top">WordSaver</h1>
       <Navigation page = {this.state.page} changePage = {this.changePage}/>
       </Header>
+      <CSSTransitionGroup
+     transitionName="comp"
+     transitionAppear={true}
+     transitionAppearTimeout={1000}
+     transitionEnter={true}
+     transitionEnterTimeout={500}
+     transitionLeaveTimeout={500}
+     transitionLeave={true}>
       <Segment className={"margin-bottom", isActive('Home')}>
         <Form className="ui form" onSubmit= { this.handleSubmit }>
           <div className="field">
@@ -178,12 +183,15 @@ class App extends Component {
          )
         }
       </Segment>
+      </CSSTransitionGroup>
       <CSSTransitionGroup
      transitionName="comp"
      transitionAppear={true}
-     transitionAppearTimeout={500}
-     transitionEnter={false}
-     transitionLeave={false}>
+     transitionAppearTimeout={1000}
+     transitionEnter={true}
+     transitionEnterTimeout={500}
+     transitionLeaveTimeout={500}
+     transitionLeave={true}>
       <Segment.Group className={isActive('Home')}>
         <WordList data = {this.state.cookie_data} updateData = {this.updateData}/>
       </Segment.Group>
@@ -191,15 +199,16 @@ class App extends Component {
       <CSSTransitionGroup
      transitionName="comp"
      transitionAppear={true}
-     transitionAppearTimeout={500}
-     transitionEnter={false}
-     transitionLeave={false}>
+     transitionAppearTimeout={1000}
+     transitionEnter={true}
+     transitionEnterTimeout={500}
+     transitionLeaveTimeout={500}
+     transitionLeave={true}>
       <div className={isActive('Quiz')}>
         <Quiz page={this.state.page} data = {this.state.cookie_data} flip = {this.state.quiz_mode} />
       </div>
       </CSSTransitionGroup>
       </div>
-      </CSSTransitionGroup>
     </Container>
     );
   }

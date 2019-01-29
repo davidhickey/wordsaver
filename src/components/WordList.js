@@ -23,7 +23,7 @@ class WordList extends Component {
           transitionName="comp"
           transitionEnter={true}
           transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}
+          transitionLeaveTimeout={500}
           transitionLeave={true}>
       {Object.keys(data).reverse().map((key) => {
         return <Segment key={key}>
