@@ -27,8 +27,8 @@ class WordList extends Component {
           transitionLeave={true}>
       {Object.keys(data).reverse().map((key) => {
         return <Segment key={key}>
-        <span className="block">{data[key][4]}</span>
-        <span className="block">{data[key][5]}</span>
+        <span className="block">{'Added on ' +`${data[key][4]}`+ ' at '+ `${data[key][5]}`}</span>
+        <br/>
         <b>{key} - </b>
         <b><i>{data[key][0]}; </i></b>
         <ul>
