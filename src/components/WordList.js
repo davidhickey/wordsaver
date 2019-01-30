@@ -33,8 +33,18 @@ class WordList extends Component {
         <b><i>{data[key][0]}; </i></b>
         <ul>
           <li>{data[key][1]}</li>
-          <li>{data[key][2]}</li>
+          {data[key][2] ? (
+            <li>{data[key][2]}</li>
+          ) : (
+            null
+          )
+          }
+          {data[key][3] ? (
           <li>{data[key][3]}</li>
+          ) : (
+            null
+          )
+          }
         </ul>
         <i onClick={() => this.props.updateData(key)} className="close icon"></i>
         </Segment>
