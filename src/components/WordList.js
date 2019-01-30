@@ -6,13 +6,7 @@ import { CSSTransitionGroup } from 'react-transition-group' // ES6
 
 
 class WordList extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
 
-// componentWillReceiveProps(props) {
-//   const data = this.props.data
-// }
 
   render() {
     const data = this.props.data
