@@ -28,6 +28,7 @@ class App extends Component {
       card_definition_third: '',
       cookie_data: '',
       error: null,
+      success: false,
       quiz_mode:{
         show_answer: false
       }
@@ -36,6 +37,8 @@ class App extends Component {
     this.updateInput = this.updateInput.bind(this);
     this.updateData = this.updateData.bind(this);
     this.changePage = this.changePage.bind(this);
+
+    this.handleWordChoice = this.handleWordChoice.bind(this);
 
   }
 
@@ -50,7 +53,11 @@ class App extends Component {
   }
 
   updateInput(event) {
-     this.setState({card_input: event.target.value});
+     this.setState({
+       card_input: event.target.value,
+       success: false,
+       error: false
+     });
   }
 
   handleSubmit(event){
@@ -72,9 +79,7 @@ class App extends Component {
           method: "GET"
         }).then(response => {
           if(response.ok){
-
             return response.json();
-
           }
           else{
             throw new Error('are you sure this is a word?');
@@ -95,22 +100,39 @@ class App extends Component {
                card_definition_second: data[0].shortdef[1],
                card_definition_third: data[0].shortdef[2],
                show_def: true,
-               error: false
+               error: false,
+               success: true,
                 })
                 var speech = this.state.card_speech
                 var def1 = this.state.card_definition_first
                 var def2 = this.state.card_definition_second
                 var def3 = this.state.card_definition_third
-
                 this.createCookie(word, speech, def1, def2, def3)
             }
-
           })
-      // })
       .catch(error => this.setState({
-        error: true
+        error: true,
+        success: false
       })
     )
+  }
+  handleWordChoice(multiWord, key){
+    this.setState({
+    card_speech: multiWord.fl,
+     card_definition_first: multiWord.shortdef[0],
+     card_definition_second: multiWord.shortdef[1],
+     card_definition_third: multiWord.shortdef[2],
+     show_def: true,
+     error: false,
+     card_multi_meaning: '',
+     success: true
+   })
+       var word = this.state.card_value
+       var speech = multiWord.fl
+       var def1 = multiWord.shortdef[0]
+      var def2 = multiWord.shortdef[1]
+       var def3 = multiWord.shortdef[2]
+      this.createCookie(word, speech, def1, def2, def3)
   }
 
   createCookie(word, speech, def1, def2, def3){
@@ -145,6 +167,7 @@ class App extends Component {
   render() {
     // const show_def = this.state.show_def
     const error = this.state.error
+    const success = this.state.success
     const page = this.state.page
     const multiMeaning = this.state.card_multi_meaning
 
@@ -156,15 +179,6 @@ class App extends Component {
       return 'active'
     }
   }
-  // function showMeanings(multiMeaning){
-  //   if(multiMeaning){
-  //     multiMeaning.map((word) =>
-  //       // def = {word.shortdef[0]}
-  //    )
-  //     return word
-  //     // console.log(multiMeaning);
-  //   }
-  // }
     return (
       <Container>
       <div className="App">
@@ -197,21 +211,33 @@ class App extends Component {
           <Button type="submit" value="submit" className="ui button">Submit</Button>
         </Form>
         {error ?
-           <p className="margin-top red">{'Are you sure this is a word?'}</p>
-           : multiMeaning ?
-               multiMeaning.map((word, key) => {
-                 return <Segment key={key}>
-                 <i className="check icon"></i>
+
+          <p className="margin-top red">{'Are you sure this is a word?'}</p>
+        : null
+      }
+
+        {multiMeaning ?
+           <div><p className="margin-top green">{'Which meaning of the word do you want to save?'}</p></div>
+           : null
+         }
+
+         {multiMeaning ?
+              multiMeaning.map((word, key) => {
+                return <Segment className="left-align" key={key}>
+                 <i className="check icon green pointer" onClick={() => this.handleWordChoice(word, key)}></i>
                  <b>{this.state.card_value} - </b><b><i>{word.fl}</i></b>
                  <ul>{word.shortdef.map((def, key)=> {
-                   return <li key={key}>{def}</li>
-                 })}</ul>
+                  return <li key={key}>{def}</li>
+                   })}</ul>
                  </Segment>
                  }
               )
-          : null
-
-
+            : null
+          }
+          {success ?
+          <p className="green margin-top">{'Word has been saved to your cookies!'}</p>
+        :
+        null
         }
 
       </Segment>
@@ -224,7 +250,8 @@ class App extends Component {
      transitionEnterTimeout={500}
      transitionLeaveTimeout={500}
      transitionLeave={true}>
-      <Segment.Group className={isActive('Home')}>
+     <h2 className="margin-top">{'My Words'}</h2>
+      <Segment.Group className={"margin-top", isActive('Home')}>
         <WordList data = {this.state.cookie_data} updateData = {this.updateData}/>
       </Segment.Group>
       </CSSTransitionGroup>
