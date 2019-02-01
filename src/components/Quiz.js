@@ -38,32 +38,7 @@ shuffleQuiz(array){
   return array
 }
 
-// allTheCards(){
-//   let startQuiz = this.props.quizData.quiz_started
-//   let type = this.props.quizData.quiz_type
-//   if(startQuiz){
-//     console.log('quiz started!')
-//   let questions = this.props.quizData.questions;
-//   const shuffledQuestions = this.grabCards(type, questions)
-//   const showShuffledCards = Object.keys(shuffledQuestions).map((key) => {
-//     console.log('in shuffled card const');
-//     return <p>{'Hi there'}</p>
-// })
-//
-//     if(type === 'Def'){
-//       console.log('Def Quiz!')
-//       // return()
-//
-//     }
-//     if(type === 'Word')
-//     console.log('Word Quiz!')
-//
-//
-// }
-//
-// }
-
-  render() {
+render() {
     var startQuiz = this.props.quizData.quiz_started
     var type = this.props.quizData.quiz_type
     var questions = this.props.quizData.questions
@@ -73,11 +48,8 @@ if(startQuiz){
        }
        if(type === 'Word'){
          var word = true
-
    }
  }
-
-
 
     //  function ShowShuffledCards() {
     //     // var startQuiz = this.props.quizData.quiz_started
@@ -106,10 +78,6 @@ if(startQuiz){
       // }
     // }
   // }
-
-
-
-
     return (
       <Segment>
         <h1> This is the Quiz!</h1>
