@@ -29,9 +29,7 @@ class App extends Component {
       cookie_data: '',
       error: null,
       success: false,
-      quiz_mode:{
-        show_answer: false
-      }
+      quiz_mode: false
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateInput = this.updateInput.bind(this);
@@ -39,6 +37,7 @@ class App extends Component {
     this.changePage = this.changePage.bind(this);
 
     this.handleWordChoice = this.handleWordChoice.bind(this);
+    this.updateQuizData = this.updateQuizData.bind(this);
 
   }
 
@@ -46,8 +45,20 @@ class App extends Component {
   componentDidMount(){
     //grabs cookies and sets them to state
     const cookies = new Cookies();
-    this.setState({cookie_data: cookies.getAll()})
+    this.setState({
+      cookie_data: cookies.getAll(),
+      quiz_mode:{
+        quiz_started: false,
+        quiz_type: null,
+        questions: cookies.getAll(),
+        correct: 0,
+        wrong: 0,
+        currentQuestionNumber: 0,
+        cardFlipped: false
+      }
+    })
   }
+
   changePage(destination){
     this.setState({page: destination})
   }
@@ -161,8 +172,22 @@ class App extends Component {
     const cookies = new Cookies();
     cookies.set(word, [speech, def1, def2, def3, realDate, realTime], { path: '/' });
     this.setState({cookie_data: cookies.getAll()})
-
   }
+
+  updateQuizData(quizData){
+    this.setState({
+      quiz_mode:{
+        quiz_started: quizData.start,
+        quiz_type: quizData.type,
+        questions: this.state.quiz_mode.questions
+        // correct: 0,
+        // wrong: 0,
+        // currentQuestionNumber: 0,
+        // cardFlipped: false
+      }
+
+  })
+}
 
   render() {
     // const show_def = this.state.show_def
@@ -250,8 +275,8 @@ class App extends Component {
      transitionEnterTimeout={500}
      transitionLeaveTimeout={500}
      transitionLeave={true}>
-     <h2 className="margin-top">{'My Words'}</h2>
       <Segment.Group className={"margin-top", isActive('Home')}>
+      <h2 className="margin-top">{'My Words'}</h2>
         <WordList data = {this.state.cookie_data} updateData = {this.updateData}/>
       </Segment.Group>
       </CSSTransitionGroup>
@@ -264,7 +289,7 @@ class App extends Component {
      transitionLeaveTimeout={500}
      transitionLeave={true}>
       <div className={isActive('Quiz')}>
-        <Quiz page={this.state.page} data = {this.state.cookie_data} flip = {this.state.quiz_mode} />
+        <Quiz page={this.state.page} quizData = {this.state.quiz_mode} updateQuizData = {this.updateQuizData} />
       </div>
       </CSSTransitionGroup>
       </div>
