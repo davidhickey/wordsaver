@@ -43,6 +43,7 @@ class App extends Component {
 
 
   componentDidMount(){
+    console.log('componenent mounted');
     //grabs cookies and sets them to state
     const cookies = new Cookies();
     this.setState({
@@ -54,8 +55,10 @@ class App extends Component {
         correct: 0,
         wrong: 0,
         currentQuestionNumber: 0,
-        cardFlipped: false
+        cardFlipped: false,
+        cardScored: false
       }
+
     })
   }
 
@@ -177,20 +180,20 @@ class App extends Component {
   updateQuizData(quizData){
     this.setState({
       quiz_mode:{
-        quiz_started: quizData.start,
-        quiz_type: quizData.type,
-        questions: this.state.quiz_mode.questions
-        // correct: 0,
-        // wrong: 0,
-        // currentQuestionNumber: 0,
-        // cardFlipped: false
+        quiz_started: quizData.quiz_started,
+        quiz_type: quizData.quiz_type,
+        questions: quizData.questions,
+        correct: quizData.correct,
+        wrong: quizData.wrong,
+        currentQuestionNumber: quizData.currentQuestionNumber,
+        cardFlipped: quizData.cardFlipped,
+        cardScored: quizData.cardScored
       }
 
   })
 }
 
   render() {
-    // const show_def = this.state.show_def
     const error = this.state.error
     const success = this.state.success
     const page = this.state.page
