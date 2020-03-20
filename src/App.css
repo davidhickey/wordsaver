@@ -1,3 +1,9 @@
+h1, h2 {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+
 .App {
   text-align: center;
 }
@@ -27,10 +33,60 @@
   top: 0px;
   right: -4px;
   cursor: pointer;
+  color:  rgba(34,36,38,.15);
 }
+.close:hover {
+  color: black;
+}
+
+
+/* material-ui classes */
+
+.App .ui.segments {
+  border: none;
+  box-shadow: none;
+  margin-top: 40px;
+}
+
+.App .ui.segment {
+  border: none;
+  box-shadow: none;
+  border-bottom: 1px solid rgba(34,36,38,.15);
+  border-radius: 0;
+}
+
+.App .ui.form {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.App .ui.form input {
+  border: none;
+  border-bottom: 1px solid rgba(34,36,38,.15);
+  border-radius: 0;
+  font-size: 24px;
+}
+
+.App .ui.form input:focus {
+  border-radius: 0;
+}
+
+.App
+
+
+
+
+/* Helper Classes */
 .block{
   display: block;
 }
+
+.inline-block{
+  display: inline-block;
+  width: 50%;
+  margin: 0 auto;
+}
+
 .hide-page{
   display: none;
 }
@@ -41,6 +97,10 @@
 .left-align{
   text-align: left;
 }
+
+.right-align {
+  text-align: right;
+}
 .no-margin-top{
   margin-top: 0;
 }
@@ -48,13 +108,39 @@
   margin-top: 10px !important;
 }
 .margin-bottom{
-  margin-bottom: 1em !important;
+  margin-bottom: 40px !important;
 }
 .red{
   color: red;
 }
 .pointer{
   cursor: pointer;
+}
+
+.relative {
+  position: relative;
+}
+
+.no-border{
+  border: none !important;
+  box-shadow: none !important;
+}
+
+
+/* unique classes */
+.react-icon {
+  position: absolute;
+  top: 0;
+  right: -24px;
+}
+
+.react-icon img {
+  height: 95px;
+}
+
+.site-title {
+  width: 100%;
+  margin-top: 30px !important;
 }
 
 

@@ -130,6 +130,7 @@ class App extends Component {
       })
     )
   }
+
   handleWordChoice(multiWord, key){
     this.setState({
     card_speech: multiWord.fl,
@@ -210,11 +211,11 @@ class App extends Component {
     return (
       <Container>
       <div className="App">
-      <Header>
-        <div className="margin-top">
+      <Header className="margin-bottom relative">
+        <h1 className="inline-block left-align site-title">WordSaver</h1>
+        <div className="inline-block right-align react-icon">
           <img src={logo} className="App-logo" alt="logo" />
         </div>
-      <h1 className="no-margin-top">WordSaver</h1>
       <Navigation page = {this.state.page} changePage = {this.changePage}/>
       </Header>
       <CSSTransitionGroup
@@ -278,8 +279,8 @@ class App extends Component {
      transitionEnterTimeout={500}
      transitionLeaveTimeout={500}
      transitionLeave={true}>
-      <Segment.Group className={"margin-top", isActive('Home')}>
-      <h2 className="margin-top">{'My Words'}</h2>
+      <Segment.Group className={isActive('Home')}>
+      <h2>{'My Words'}</h2>
         <WordList data = {this.state.cookie_data} updateData = {this.updateData}/>
       </Segment.Group>
       </CSSTransitionGroup>

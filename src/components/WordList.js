@@ -12,7 +12,7 @@ class WordList extends Component {
     const data = this.props.data
     return (
 
-      <Segment className="left-align">
+      <Segment className="left-align no-border">
       <CSSTransitionGroup
           transitionName="word"
           transitionEnter={true}

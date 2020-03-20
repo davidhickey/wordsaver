@@ -85,15 +85,13 @@ render() {
         
     return (
       <Segment>
-        <h1> This is the Quiz!</h1>
-        <div>
-          <Button onClick={() => this.reset(quizData)}>Shuffle and Play Again?</Button>
-        </div>
+        {quizData.quiz_started ? null : <h1>Quiz me on words or definitions?</h1>}
           {quizData.quiz_started ? 
             <div className="card-container">
-              <div><span>{'Card Count: '} <span>{cardCount}</span><span>{' / '}</span><span>{cardTotal}</span></span></div>
-              <p>{'Quiz Started'}</p>
-              <div className="Card">
+              <div>
+                <span className="inline-block left-align">{'Quiz Started'}</span>
+                <span className="inline-block right-align">{'Card Count: '} <span>{cardCount}</span><span>{' / '}</span><span>{cardTotal}</span></span></div>
+              <Segment className="Card">
                 {cardFlipped ?
                 <div> 
                   <p>{quizType === 'def' ? 'The definition is...' : 'The word is...'}</p>
@@ -124,7 +122,7 @@ render() {
                   <Button onClick={() => this.flipCard(quizData)}>Flip Me!</Button>
                 </div>
                 }
-              </div>
+              </Segment>
               <div>{'Quiz Score'}</div>
               <div><span>{'Correct: '}<span>{numCorrect}</span></span><span>{' Wrong: '}<span>{numWrong}</span></span></div>
             </div>
