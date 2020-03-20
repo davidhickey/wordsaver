@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
 import { Segment, Button, Icon } from 'semantic-ui-react';
 
+const shuffle = (unshuffledCards) => {
+  let shuffledCards = {};
+  let keys = Object.keys(unshuffledCards);
 
+  keys.sort(function(a,b) {return Math.random() - 0.5;});
+  keys.forEach(function(k) {
+    shuffledCards[k] = unshuffledCards[k]
+  });
+
+  return shuffledCards
+}
 
 class Quiz extends Component {
 
 //starts quiz
 quizStart(quizType, quizData){
+
+  let getQuestions = this.props.questions
   console.log('at start of quiz the data is', quizData);
   quizData.quiz_started = true;
   quizData.quiz_type = quizType;
+  quizData.questions = shuffle(getQuestions);
  
   this.props.updateQuizData(quizData)
 }
@@ -39,18 +52,10 @@ nextCard(quizData){
   this.props.updateQuizData(quizData);
 }
 
-shuffleReset(quizData){
-  let shuffledCards = {};
-  let keys = Object.keys(quizData.questions);
 
-  keys.sort(function(a,b) {return Math.random() - 0.5;});
-  keys.forEach(function(k) {
-   shuffledCards[k] = quizData.questions[k]
-  });
-
+reset(quizData){
   quizData.quiz_started = false;
   quizData.quiz_type = null;
-  quizData.questions = shuffledCards;
   quizData.correct = 0;
   quizData.wrong = 0;
   quizData.currentQuestionNumber = 0;
@@ -76,16 +81,13 @@ render() {
     let numWrong = quizData.wrong; 
     let cardFlipped = quizData.cardFlipped;
     let cardScored = quizData.cardScored;
-
     let resetGame = cardCount === cardTotal ? true : false; 
-
-    console.log('for show card, quiz dat is', quizData, 'the card num is', cardNum, 'the question is', word, 'the def is', def, 'amount of questions is', cardTotal);
         
     return (
       <Segment>
         <h1> This is the Quiz!</h1>
         <div>
-          <Button onClick={() => this.shuffleReset(quizData)}>Shuffle and Play Again?</Button>
+          <Button onClick={() => this.reset(quizData)}>Shuffle and Play Again?</Button>
         </div>
           {quizData.quiz_started ? 
             <div className="card-container">

@@ -292,7 +292,7 @@ class App extends Component {
      transitionLeaveTimeout={500}
      transitionLeave={true}>
       <div className={isActive('Quiz')}>
-        <Quiz page={this.state.page} quizData = {this.state.quiz_mode} updateQuizData = {this.updateQuizData} />
+        <Quiz  questions={this.state.cookie_data} page={this.state.page} quizData = {this.state.quiz_mode} updateQuizData = {this.updateQuizData} />
       </div>
       </CSSTransitionGroup>
       </div>
