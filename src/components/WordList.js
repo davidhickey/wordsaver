@@ -3,10 +3,7 @@ import React, { Component } from 'react';
 import { Segment} from 'semantic-ui-react';
 import { CSSTransitionGroup } from 'react-transition-group' // ES6
 
-
-
 class WordList extends Component {
-
 
   render() {
     const data = this.props.data

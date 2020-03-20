@@ -10,10 +10,9 @@ import Navigation from './components/Navigation';
 import WordList from './components/WordList';
 import Quiz from './components/Quiz';
 
-
-
 class App extends Component {
   constructor (props) {
+
     super(props)
 
     this.state = {
@@ -31,14 +30,13 @@ class App extends Component {
       success: false,
       quiz_mode: false
     }
+
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateInput = this.updateInput.bind(this);
     this.updateData = this.updateData.bind(this);
     this.changePage = this.changePage.bind(this);
-
     this.handleWordChoice = this.handleWordChoice.bind(this);
     this.updateQuizData = this.updateQuizData.bind(this);
-
   }
 
 
@@ -237,7 +235,7 @@ class App extends Component {
             onChange={this.updateInput}
             />
           </div>
-          <Button type="submit" value="submit" className="ui button">Submit</Button>
+          <Button type="submit" value="submit" className="ui button">Get Definition</Button>
         </Form>
         {error ?
 
@@ -252,7 +250,7 @@ class App extends Component {
 
          {multiMeaning ?
               multiMeaning.map((word, key) => {
-                return <Segment className="left-align" key={key}>
+                return <Segment className="left-align option-container" key={key}>
                  <i className="check icon green pointer" onClick={() => this.handleWordChoice(word, key)}></i>
                  <b>{this.state.card_value} - </b><b><i>{word.fl}</i></b>
                  <ul>{word.shortdef.map((def, key)=> {
@@ -280,7 +278,6 @@ class App extends Component {
      transitionLeaveTimeout={500}
      transitionLeave={true}>
       <Segment.Group className={isActive('Home')}>
-      <h2>{'My Words'}</h2>
         <WordList data = {this.state.cookie_data} updateData = {this.updateData}/>
       </Segment.Group>
       </CSSTransitionGroup>

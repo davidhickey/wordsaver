@@ -51,7 +51,6 @@ h1, h2 {
 .App .ui.segment {
   border: none;
   box-shadow: none;
-  border-bottom: 1px solid rgba(34,36,38,.15);
   border-radius: 0;
 }
 
@@ -71,7 +70,19 @@ h1, h2 {
   border-radius: 0;
 }
 
-.App
+.App .check.icon.green {
+  font-size: 24px;
+}
+
+.App .ui.segment.Card {
+  box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
+  margin: 1rem 0;
+  padding: 1em 1em;
+  border-radius: .28571429rem;
+  border: 1px solid rgba(34,36,38,.15);
+  min-height: 300px;
+}
+
 
 
 
@@ -127,7 +138,7 @@ h1, h2 {
 }
 
 
-/* unique classes */
+/* custom classes */
 .react-icon {
   position: absolute;
   top: 0;
@@ -141,6 +152,70 @@ h1, h2 {
 .site-title {
   width: 100%;
   margin-top: 30px !important;
+}
+
+.option-container {
+  opacity: .6;
+  cursor: pointer;
+}
+
+.option-container:hover{
+  opacity: 1;
+}
+
+
+
+/* Quiz Component */
+.quiz-container .score-container {
+  display: inline-block;
+}
+
+.quiz-container .prompt {
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+
+.quiz-container .question {
+  font-size: 16px;
+}
+
+.quiz-container .word-answer{
+  font-size: 24px;
+}
+
+.quiz-container .def-answer{
+  text-align: left;
+}
+
+.quiz-container .def-question{
+  text-align: left;
+  font-size: 14px;
+}
+
+.quiz-container .quiz-button-container {
+  margin-top: 40px;
+}
+
+.quiz-container .ui.button.correct {
+  background-color: white;
+  color: green;
+  border: 1px solid green;
+}
+
+.quiz-container .ui.button.wrong {
+  background-color: white;
+  color: red;
+  border: 1px solid red;
+}
+
+.quiz-container .ui.button.correct:hover {
+  background-color: green;
+  color: white;
+}
+
+.quiz-container .ui.button.wrong:hover {
+  background-color: red;
+  color: white;
 }
 
 
