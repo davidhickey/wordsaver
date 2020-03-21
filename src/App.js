@@ -98,28 +98,33 @@ class App extends Component {
           }
         })
           .then(data =>{
-            if(data.length > 1){
-              this.setState({
-                card_multi_meaning: data,
-                error: false
-              })
-              console.log(data)
+            if (!data[0].meta){
+              throw new Error('are you sure this is a word?');
             }
-            else{
-              this.setState({
-              card_speech: data[0].fl,
-               card_definition_first: data[0].shortdef[0],
-               card_definition_second: data[0].shortdef[1],
-               card_definition_third: data[0].shortdef[2],
-               show_def: true,
-               error: false,
-               success: true,
+            else {
+              if(data.length > 1){
+                this.setState({
+                  card_multi_meaning: data,
+                  error: false
                 })
-                var speech = this.state.card_speech
-                var def1 = this.state.card_definition_first
-                var def2 = this.state.card_definition_second
-                var def3 = this.state.card_definition_third
-                this.createCookie(word, speech, def1, def2, def3)
+                console.log(data)
+              }
+              else{
+                this.setState({
+                card_speech: data[0].fl,
+                card_definition_first: data[0].shortdef[0],
+                card_definition_second: data[0].shortdef[1],
+                card_definition_third: data[0].shortdef[2],
+                show_def: true,
+                error: false,
+                success: true,
+                  })
+                  var speech = this.state.card_speech
+                  var def1 = this.state.card_definition_first
+                  var def2 = this.state.card_definition_second
+                  var def3 = this.state.card_definition_third
+                  this.createCookie(word, speech, def1, def2, def3)
+              }
             }
           })
       .catch(error => this.setState({
