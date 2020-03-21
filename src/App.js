@@ -255,8 +255,8 @@ class App extends Component {
 
          {multiMeaning ?
               multiMeaning.map((word, key) => {
-                return <Segment className="left-align option-container" key={key}>
-                 <i className="check icon green pointer" onClick={() => this.handleWordChoice(word, key)}></i>
+                return <Segment className="left-align option-container" key={key} onClick={() => this.handleWordChoice(word, key)}>
+                 <i className="check icon green pointer"></i>
                  <b>{this.state.card_value} - </b><b><i>{word.fl}</i></b>
                  <ul>{word.shortdef.map((def, key)=> {
                   return <li key={key}>{def}</li>
