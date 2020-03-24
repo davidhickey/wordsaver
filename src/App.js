@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Header, Segment, Button, Icon, Dimmer, Loader, Divider, Form, Input} from 'semantic-ui-react'
+import { Container, Header, Segment, Button, Form, Input} from 'semantic-ui-react'
 import Cookies from 'universal-cookie';
 import { CSSTransitionGroup } from 'react-transition-group'
 import logo from './logo.svg';

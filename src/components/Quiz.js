@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Segment, Button, Icon } from 'semantic-ui-react';
+import { Segment, Button } from 'semantic-ui-react';
+import { CSSTransitionGroup } from 'react-transition-group' // ES6
+
 
 const shuffle = (unshuffledCards) => {
   let shuffledCards = {};
@@ -90,7 +92,15 @@ render() {
         
     return (
       <Segment className="quiz-container">
-          {quizData.quiz_started ? 
+          {quizData.quiz_started ?
+            <CSSTransitionGroup
+            transitionName="comp"
+            transitionAppear={true}
+            transitionAppearTimeout={1000}
+            transitionEnter={true}
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={500}
+            transitionLeave={true}> 
             <div className="card-container">
               <div>
               <div className="score-container"><span>{'Correct: '}<span>{numCorrect}</span></span><span>{' Wrong: '}<span>{numWrong}</span></span></div>
@@ -100,7 +110,8 @@ render() {
                 {cardFlipped ?
                 <div> 
                   <p className="prompt">{quizType === 'def' ? <span>{"The definition of " + word + " is..." }</span> : 'The word is...'}</p>
-                  <div>{quizType === 'def' ? 
+                  <div>{quizType === 'def' ?
+                    <CSSTransitionGroup transitionName="comp" transitionAppear={true} transitionAppearTimeout={1000} transitionEnter={true} transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionLeave={true}> 
                     <div className="def-answer">
                       <div><b>{word + " - " + def[0]}</b></div>
                       <div>
@@ -111,8 +122,12 @@ render() {
                         </ul>
                       </div>
                       <div>{"Add on " + def[4] + " at " + def[5]}</div>
-                    </div> 
-                    : <div className="word-answer">{word}</div>
+                    </div>
+                    </CSSTransitionGroup> 
+                    : 
+                    <CSSTransitionGroup transitionName="comp" transitionAppear={true} transitionAppearTimeout={1000} transitionEnter={true} transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionLeave={true}> 
+                    <div className="word-answer">{word}</div>
+                    </CSSTransitionGroup>
                     }
                     </div>
                   {cardScored ?
@@ -137,8 +152,10 @@ render() {
                 :
                 <div>
                   <p className="prompt">{quizType === 'def' ? 'What is the definition of this word?' : 'What is this word?'}</p>
+                  <CSSTransitionGroup transitionName="comp" transitionAppear={true} transitionAppearTimeout={1000} transitionEnter={true} transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionLeave={true}> 
                   <div className="question">
-                    {quizType === 'def' ? word : 
+                    {quizType === 'def' ? word
+                    : 
                       <div className="def-question">
                         <div><b>{def[0]}</b></div>
                           <ul>
@@ -149,6 +166,7 @@ render() {
                       </div> 
                     }
                   </div>
+                  </CSSTransitionGroup>
                   <div className="quiz-button-container">
                   <Button onClick={() => this.flipCard(quizData)}>Flip Me!</Button>
                   </div>
@@ -156,11 +174,14 @@ render() {
                 }
               </Segment>
             </div>
+            </CSSTransitionGroup>
              :
+             <CSSTransitionGroup transitionName="comp" transitionAppear={true} transitionAppearTimeout={1000} transitionEnter={true} transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionLeave={true}> 
              <div className="quiz-button-container">
               <Button onClick={() => this.quizStart('def', quizData)}>Definition Quiz</Button>
               <Button onClick={() => this.quizStart('word', quizData)}>Word Quiz</Button>
-           </div>
+            </div>
+            </CSSTransitionGroup>
           }
       </Segment>
     )
