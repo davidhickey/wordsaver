@@ -93,19 +93,12 @@ render() {
     return (
       <Segment className="quiz-container">
           {quizData.quiz_started ?
-            <CSSTransitionGroup
-            transitionName="comp"
-            transitionAppear={true}
-            transitionAppearTimeout={1000}
-            transitionEnter={true}
-            transitionEnterTimeout={500}
-            transitionLeaveTimeout={500}
-            transitionLeave={true}> 
             <div className="card-container">
               <div>
               <div className="score-container"><span>{'Correct: '}<span>{numCorrect}</span></span><span>{' Wrong: '}<span>{numWrong}</span></span></div>
                 <span className="inline-block right-align">{'Card Count: '} <span>{cardCount}</span><span>{' / '}</span><span>{cardTotal}</span></span>
               </div>
+              <CSSTransitionGroup transitionName="comp" transitionAppear={true} transitionAppearTimeout={1000} transitionEnter={true} transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionLeave={true}> 
               <Segment className="Card">
                 {cardFlipped ?
                 <div> 
@@ -173,8 +166,8 @@ render() {
                 </div>
                 }
               </Segment>
+              </CSSTransitionGroup>
             </div>
-            </CSSTransitionGroup>
              :
              <CSSTransitionGroup transitionName="comp" transitionAppear={true} transitionAppearTimeout={1000} transitionEnter={true} transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionLeave={true}> 
              <div className="quiz-button-container">
