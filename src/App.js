@@ -203,14 +203,6 @@ class App extends Component {
     const page = this.state.page
     const multiMeaning = this.state.card_multi_meaning
 
-    function isActive(activePage){
-    if(page !== activePage){
-      return 'hide-page'
-    }
-    else{
-      return 'active'
-    }
-  }
     return (
       <Container>
       <div className="App">
@@ -219,8 +211,10 @@ class App extends Component {
         <div className="inline-block right-align react-icon">
           <img src={logo} className="App-logo" alt="logo" />
         </div>
-      <Navigation page = {this.state.page} changePage = {this.changePage}/>
+      <Navigation page = {this.state.page} changePage = {this.changePage} quizReady={this.state.cookie_data} />
       </Header>
+      { page === "Home" ?
+      <div> 
       <CSSTransitionGroup
      transitionName="comp"
      transitionAppear={true}
@@ -229,7 +223,7 @@ class App extends Component {
      transitionEnterTimeout={500}
      transitionLeaveTimeout={500}
      transitionLeave={true}>
-      <Segment className={"margin-bottom", isActive('Home')}>
+      <Segment className={"margin-bottom"}>
         <Form className="ui form" onSubmit= { this.handleSubmit }>
           <div className="field">
             <Input
@@ -273,8 +267,8 @@ class App extends Component {
         }
 
       </Segment>
-      </CSSTransitionGroup>
-      <CSSTransitionGroup
+    </CSSTransitionGroup>
+    <CSSTransitionGroup
      transitionName="comp"
      transitionAppear={true}
      transitionAppearTimeout={1000}
@@ -282,22 +276,16 @@ class App extends Component {
      transitionEnterTimeout={500}
      transitionLeaveTimeout={500}
      transitionLeave={true}>
-      <Segment.Group className={isActive('Home')}>
+      <Segment.Group>
         <WordList data = {this.state.cookie_data} updateData = {this.updateData}/>
       </Segment.Group>
       </CSSTransitionGroup>
-      <CSSTransitionGroup
-     transitionName="comp"
-     transitionAppear={true}
-     transitionAppearTimeout={1000}
-     transitionEnter={true}
-     transitionEnterTimeout={500}
-     transitionLeaveTimeout={500}
-     transitionLeave={true}>
-      <div className={isActive('Quiz')}>
+      </div>
+      :
+      <div>
         <Quiz  questions={this.state.cookie_data} page={this.state.page} quizData = {this.state.quiz_mode} updateQuizData = {this.updateQuizData} />
       </div>
-      </CSSTransitionGroup>
+      }
       </div>
     </Container>
     );
