@@ -9,7 +9,7 @@ class WordList extends Component {
     const data = this.props.data;
 
 
-    const wordList = Object.keys(Object.assign([], data)).reverse();
+    const wordList = Object.keys(Object.assign([], data).reverse());
 
     return (
 
