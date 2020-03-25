@@ -95,13 +95,16 @@ render() {
           {quizData.quiz_started ?
             <div className="card-container">
               <div>
-              <div className="score-container"><span>{'Correct: '}<span>{numCorrect}</span></span><span>{' Wrong: '}<span>{numWrong}</span></span></div>
-                <span className="inline-block right-align">{'Card Count: '} <span>{cardCount}</span><span>{' / '}</span><span>{cardTotal}</span></span>
+              <div className="score-container"><span>{'Correct: '}<span className="num-correct"><b>{numCorrect}</b></span></span><span>{' Wrong: '}<span className="num-wrong"><b>{numWrong}</b></span></span></div>
+                <span className="inline-block right-align">{'Card Count: '} <span><b>{cardCount}</b></span><span>{' / '}</span><span><b>{cardTotal}</b></span></span>
               </div>
               <CSSTransitionGroup transitionName="comp" transitionAppear={true} transitionAppearTimeout={1000} transitionEnter={true} transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionLeave={true}> 
               <Segment className="Card">
+              <div className="right-align end-quiz-button">
+                <Button onClick={() => this.reset(quizData)}>End Quiz</Button>
+              </div>
                 {cardFlipped ?
-                <div> 
+                <div className="quiz-text-container"> 
                   <p className="prompt">{quizType === 'def' ? <span>{"The definition of " + word + " is..." }</span> : 'The word is...'}</p>
                   <div>{quizType === 'def' ?
                     <CSSTransitionGroup transitionName="comp" transitionAppear={true} transitionAppearTimeout={1000} transitionEnter={true} transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionLeave={true}> 
@@ -151,11 +154,11 @@ render() {
                   }
                 </div>
                 :
-                <div>
+                <div className="quiz-text-container">
                   <p className="prompt">{quizType === 'def' ? 'What is the definition of this word?' : 'What is this word?'}</p>
                   <CSSTransitionGroup transitionName="comp" transitionAppear={true} transitionAppearTimeout={1000} transitionEnter={true} transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionLeave={true}> 
                   <div className="question">
-                    {quizType === 'def' ? word
+                    {quizType === 'def' ? <span className="word-question">{word}</span>
                     : 
                       <div className="def-question">
                         <div><b>{def[0]}</b></div>
