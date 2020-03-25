@@ -89,6 +89,7 @@ h1, h2 {
   border-bottom: 1px solid rgba(34,36,38,.15);
   border-radius: 0;
   font-size: 24px;
+  text-transform: unset;
 }
 
 .App .ui.form input:focus {
