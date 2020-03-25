@@ -9,7 +9,7 @@ class WordList extends Component {
     const data = this.props.data;
 
 
-    const wordList = Object.assign([], data);
+    const wordList = Object.keys(Object.assign([], data)).reverse();
 
     return (
 
@@ -20,7 +20,7 @@ class WordList extends Component {
           transitionEnterTimeout={1000}
           transitionLeaveTimeout={500}
           transitionLeave={true}>
-      {Object.keys(wordList).reverse().map((key) => {
+      {wordList.map((key) => {
         return <Segment key={key}>
         <br/>
         <b>{key} - </b>
