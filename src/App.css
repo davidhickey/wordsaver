@@ -190,6 +190,13 @@ h1, h2 {
 
 
 
+/* Wordlist component */
+.word-added {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+
 /* Quiz Component */
 .quiz-container .score-container {
   display: inline-block;

@@ -6,7 +6,11 @@ import { CSSTransitionGroup } from 'react-transition-group' // ES6
 class WordList extends Component {
 
   render() {
-    const data = this.props.data
+    const data = this.props.data;
+
+
+    const wordList = {...data};
+
     return (
 
       <Segment className="left-align no-border">
@@ -16,9 +20,8 @@ class WordList extends Component {
           transitionEnterTimeout={1000}
           transitionLeaveTimeout={500}
           transitionLeave={true}>
-      {Object.keys(data).reverse().map((key) => {
+      {Object.keys(wordList).reverse().map((key) => {
         return <Segment key={key}>
-        <span className="block">Added on {data[key][4]} at {data[key][5]}</span>
         <br/>
         <b>{key} - </b>
         <b><i>{data[key][0]}; </i></b>
@@ -37,6 +40,7 @@ class WordList extends Component {
           )
           }
         </ul>
+        <span className="block word-added">Added on {data[key][4]} at {data[key][5]}</span>
         <i onClick={() => this.props.updateData(key)} className="close icon"></i>
         </Segment>
       })}
