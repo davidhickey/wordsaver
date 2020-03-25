@@ -9,7 +9,7 @@ class WordList extends Component {
     const data = this.props.data;
 
 
-    const wordList = data;
+    const wordList = Object.assign([], data);
 
     return (
 
