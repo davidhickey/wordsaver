@@ -42,8 +42,6 @@ class WordList extends Component {
       })}
       </CSSTransitionGroup>
       </Segment>
-
-
     )
   }
 }

@@ -110,8 +110,16 @@ render() {
                       <div>
                         <ul>
                           <li>{def[1]}</li>
+                          { def[2] ? 
                           <li>{def[2]}</li>
+                          :
+                          null
+                          }
+                          {def[3] ?
                           <li>{def[3]}</li>
+                          :
+                          null
+                          }
                         </ul>
                       </div>
                       <div>{"Add on " + def[4] + " at " + def[5]}</div>
@@ -153,8 +161,16 @@ render() {
                         <div><b>{def[0]}</b></div>
                           <ul>
                             <li>{def[1]}</li>
-                            <li>{def[2]}</li>
-                            <li>{def[3]}</li>
+                            { def[2] ? 
+                          <li>{def[2]}</li>
+                          :
+                          null
+                          }
+                          {def[3] ?
+                          <li>{def[3]}</li>
+                          :
+                          null
+                          }
                           </ul>
                       </div> 
                     }

@@ -261,7 +261,7 @@ class App extends Component {
             : null
           }
           {success ?
-          <p className="green margin-top">{'Word has been saved to your cookies!'}</p>
+          <p className="green margin-top">{'Word has been saved!'}</p>
         :
         null
         }
