@@ -18,7 +18,7 @@
     "react-transition-group": "^1.2.1",
     "semantic-ui-react": "^0.84.0",
     "serialize-javascript": "^2.1.1",
-    "set-value": "^2.0.1",
+    "set-value": "^4.0.1",
     "universal-cookie": "^3.1.0"
   },
   "scripts": {
